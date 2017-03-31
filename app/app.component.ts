@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User } from './shared/models/user';
+
 
 @Component({
     selector: 'my-app',
@@ -27,12 +29,16 @@ import { Component } from '@angular/core';
                 <div class="col-sm-8">
                     <div class="jumbotron" *ngIf="activeUser">
                         <h2> {{activeUser.name}} <small> {{activeUser.username}} </small> </h2>
+                        <input class="form-control" [(ngModel)]="activeUser.name">
                     </div>
 
                     <div class="jumbotron" *ngIf="!activeUser">
                         <span class="glyphicon glyphicon-hand-left"></span>
                         <h2>Choose user</h2>
+                        
                     </div>
+
+                    
                 </div>
             </div>
 
@@ -52,14 +58,14 @@ import { Component } from '@angular/core';
     `]
 })
 export class AppComponent {
-    message = 'Hello!';
-    users = [
+    message: string = 'Hello!';
+    users: User[] = [
         { id: 25, name: 'Marek', username: 'mpetak' },
         { id: 26, name: 'Nick', username: 'nickh' },
         { id: 27, name: 'Homer', username: 'homers' }
     ];
 
-    activeUser: {};
+    activeUser: User;
 
     selectUser(user) {
         this.activeUser = user;
